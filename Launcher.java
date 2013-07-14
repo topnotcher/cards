@@ -1,37 +1,33 @@
-import com.coldsteelstudios.irc.*;
-import com.coldsteelstudios.irc.client.*;
+import java.beans.XMLDecoder;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class Launcher {
 
-	Connection irc;
-	SyncManager sync;
+	private static final String CONFIG_FILE = "config.xml";
 
 	public static void main(String[] args) {
-		new Launcher();
-	}
-
-	private Launcher() {
-		irc = new Connection("sphinx.jaundies.com", 6667, "cards");
-		sync = new SyncManager(irc);
-
+		XMLDecoder d;
 		try {
-			irc.connect();
-		} catch (ConnectionException e) {
-			printException(e);
-			System.exit(1);
+			d = new XMLDecoder(new BufferedInputStream(new FileInputStream(CONFIG_FILE)));
+		} catch( IOException e ) {
+			System.err.println("Error reading config file: "+e.getMessage());
+			return;
 		}
 
-		new Cards(irc,sync,"#cards", "blacks.txt", "whites.txt");
+		while (true) try {
+			//just read in a bunch of objects. 
+			//The method calls are all via the config
+			d.readObject();
+		} catch (ArrayIndexOutOfBoundsException e) {
+			//normal behavior
+			break;
+		} catch (Exception e) {
+			System.err.println("Error reading beans: "+ e.getMessage());
+			break;
+		}
+		try { d.close(); } catch (Exception e) {}
 	}
 
-	/**
-	 * prints an exception to the debug window.
-	 */
-	private static void printException(Throwable e) {
-		System.err.println( e.toString() );
-
-		for (StackTraceElement st : e.getStackTrace())
-			System.err.println( st.toString() );
-
-	}
 }

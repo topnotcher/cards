@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<java version="1.6.0" class="java.beans.XMLDecoder">
+
+	<object class="Client" id="client">
+		<void property="host">
+			<string>sphinx.jaundies.com</string>
+		</void>
+
+		<void property="port">
+			<int>6667</int>
+		</void>
+
+		<void property="nick">
+			<string>Cards</string>
+		</void>
+
+		<void method="connect" />
+	</object>
+
+	<object class="Cards" id="cards">
+		<void property="channel">
+			<string>#cards</string>
+		</void>
+
+		<void method="createGame">
+			<string>blacks.txt</string>
+			<string>whites.txt</string>
+		</void>
+
+		<void method="init">
+			<object idref="client" />
+		</void>
+	</object>
+
+</java>

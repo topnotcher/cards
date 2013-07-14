@@ -4,7 +4,7 @@ import com.coldsteelstudios.irc.client.*;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
-public class Cards {
+public class Cards implements Plugin {
 
 	private Connection irc;
 	private SyncManager sync;
@@ -17,13 +17,28 @@ public class Cards {
 
 	private CardsGame game;
 
-	public Cards(Connection irc, SyncManager sync, String channel, String blackFile, String whiteFile) {
-		this.irc = irc;
-		this.sync = sync;
+	public Cards() {
+	}
+
+	public Cards(String channel) {
 		this.channel = channel;
 
-		irc.join(channel);
+	}
 
+	public void setChannel(String channel) {
+		this.channel = channel;
+	}
+
+	public void createGame(String blackFile, String whiteFile) throws java.io.IOException {
+		game = new CardsGame(new FileDeck(blackFile), new FileDeck(whiteFile));
+		pubmsg("Failed to create cards game?");
+	}
+
+	public void init(Client client) {
+		irc = client.getConnection();
+		sync = client.getSyncManager();
+
+		irc.join(channel);
 
 		Channel chan;
 		int tries = 0;
@@ -32,13 +47,6 @@ public class Cards {
 		
 		if ( chan == null )
 			throw new RuntimeException("Failed to sync...");
-
-		try {
-			game = new CardsGame(new FileDeck(blackFile), new FileDeck(whiteFile));
-		} catch (Exception e) {
-			pubmsg("Failed to create cards game?");
-			throw new RuntimeException("WTF");
-		}
 
 		chan.addChannelListener( channelListener );
 
