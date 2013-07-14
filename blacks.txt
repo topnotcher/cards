@@ -23,7 +23,7 @@ For my next trick, I will pull %s out of %s.
 In the new Disney Channel Original Movie, Hannah Montana struggles with %s for the first time.
 That's right, I killed %s. How, you ask? %s.
 %s + %s = %s
-Lifetime presents 5, the story of %s.
+Lifetime presents %s, the story of %s.
 When I am a billionaire, I shall erect a 50-foot statue to commemorate %s.
 When I was tripping on acid, %s turned into %s.
 I never truly understood %s until I encountered %s.
