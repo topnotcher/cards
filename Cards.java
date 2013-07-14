@@ -215,7 +215,11 @@ public class Cards implements Plugin {
 			showHand(nick);
 		} else if ( msg.startsWith("pick") ) {
 			//format: pick 1,2,3...
-			pick(nick, parsePicks(msg.substring(5)));
+			try {
+				pick(nick, parsePicks(msg.substring(5)));
+			} catch (Exception e ) {
+				//DGAF
+			}
 		} else if ( msg.startsWith("help") ) {
 			help(nick);
 		}
@@ -226,13 +230,8 @@ public class Cards implements Plugin {
 		int count = 0;
 
 		StringTokenizer st = new StringTokenizer(msg);
-		while (st.hasMoreTokens() && count < picks.length) {
-			try {
-				picks[count++] = Integer.parseInt(st.nextToken().trim());
-			} catch (Exception e) {
-				//fuck off ya nigger
-			}
-		}
+		while (st.hasMoreTokens() && count < picks.length) 
+			picks[count++] = Integer.parseInt(st.nextToken().trim());
 
 		int picks_sized[] = new int[count];
 		System.arraycopy(picks,0,picks_sized,0,count);
