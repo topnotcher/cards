@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <java version="1.6.0" class="java.beans.XMLDecoder">
 
+	<!-- setup the client object -->
 	<object class="Client" id="client">
 		<void property="host">
 			<string>sphinx.jaundies.com</string>
@@ -17,6 +18,7 @@
 		<void method="connect" />
 	</object>
 
+	<!-- nickserv identifier plugin -->
 	<object class="NickServ" id="ns">
 		<void property="password">
 			<string>l0lp4ss!</string>
@@ -27,6 +29,7 @@
 		</void>
 	</object>
 
+	<!-- cards game -->
 	<object class="Cards" id="cards">
 		<void property="channel">
 			<string>#cards</string>
@@ -41,5 +44,4 @@
 			<object idref="client" />
 		</void>
 	</object>
-
 </java>
