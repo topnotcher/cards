@@ -71,6 +71,7 @@ public class Cards {
 		CardsPlayer player = game.getPlayer(nick);
 		if ( player == null ) return;
 
+		privmsg(nick, formatQuestion());
 		int i = 0;
 		for ( Card card : player.getWhite() )
 			privmsg(nick, "["+ (i++) +"] " + card.getText());
@@ -108,24 +109,26 @@ public class Cards {
 	private void startRound() {
 		game.startRound();
 	
-		//read the black card. 
+		pubmsg("---------------------------------------");
+		pubmsg("A new round has begun. It is "+game.getCzar().getName() +"'s turn as the Card Czar!");
+
+		pubmsg(formatQuestion());
+
+		pubmsg( String.format( "[%s] Pick %d cards!", game.getCzar().getName(), game.getBlanks()) );
+		pubmsg("Send your responses with !pick, i.e. !pick 0 1 to pick cards 0 and 1.");
+		pubmsg("Type !show to show your hand.");
+	}
+
+	private String formatQuestion() {
 		Card black = game.getBlackCard();
 
 		String blanks[] = new String[game.getBlanks()];
 		for ( int i = 0; i < blanks.length; ++i )
 			blanks[i] = BLANK;
 
-		pubmsg("---------------------------------------");
-		pubmsg("A new round has begun. It is "+game.getCzar().getName() +"'s turn as the Card Czar!");
-
-
 		String msg = String.format(black.getText(), (Object[])blanks);
-		pubmsg( String.format( "[%s] %s", game.getCzar().getName(), msg) );
-		pubmsg( String.format( "[%s] Pick %d cards!", game.getCzar().getName(), game.getBlanks()) );
-		pubmsg("Send your responses with !pick, i.e. !pick 0 1 to pick cards 0 and 1.");
-		pubmsg("Type !show to show your hand.");
+		return String.format( "[%s] %s", game.getCzar().getName(), msg) ;
 	}
-
 
 	private void pick(String nick, int picks[]) {
 		if ( game.getState() != CardsGame.GameState.PLAYING ) {
