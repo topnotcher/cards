@@ -1,8 +1,8 @@
-%s is how I lost my virginity?
-%s is why can't I sleep at night?
+%s is how I lost my virginity.
+%s is why can't I sleep at night.
 What's that smell? %s
 I got 99 problems but %s aint one.
-Maybe she's borth with it. Maybe it's %s.
+Maybe she's born with it. Maybe it's %s.
 %s is next Happy Meal toy?
 Here is the church. Here is the steeple. Open the doors and there is %s.
 It's a pity that kids these days are all getting involved with %s.
@@ -11,7 +11,7 @@ Alternative medicine is now embracing the curative powers of %s.
 And the Academy Award for %s goes to %s.
 What's that sound? %s
 %s ended my last relationship?
-MTV's new reality show features weight washed-up celebrities living with %s.
+MTV's new reality show features eight washed-up celebrities living with %s.
 I drink to forget %s.
 I'm sorry, Professor, but I couldn't complete my homework because of %s.
 %s is Batman's guilty pleasure.
