@@ -17,6 +17,16 @@
 		<void method="connect" />
 	</object>
 
+	<object class="NickServ" id="ns">
+		<void property="password">
+			<string>l0lp4ss!</string>
+		</void>
+
+		<void method="init">
+			<object idref="client" />
+		</void>
+	</object>
+
 	<object class="Cards" id="cards">
 		<void property="channel">
 			<string>#cards</string>
