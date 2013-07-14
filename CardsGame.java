@@ -101,7 +101,7 @@ class CardsGame {
 		if ( player.getPicks().count() == 0 && !player.getName().equals(getCzar().getName())) {
 
 			for ( Card c : player.getWhite().pick(picks) )
-				player.getPicks().add(c);
+				player.getPicks().addBottom(c);
 		}
 
 		//now check to see if we should transition into the END state
