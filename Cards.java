@@ -17,12 +17,10 @@ public class Cards implements Plugin {
 
 	private CardsGame game;
 
-	public Cards() {
-	}
+	public Cards() {}
 
 	public Cards(String channel) {
 		this.channel = channel;
-
 	}
 
 	public void setChannel(String channel) {
@@ -42,7 +40,6 @@ public class Cards implements Plugin {
 	}
 	
 	private void setup() {
-
 		irc.join(channel);
 
 		Channel chan;
@@ -104,6 +101,14 @@ public class Cards implements Plugin {
 
 	private void privmsg(User u, String msg) {
 		privmsg(u.getNick(),msg);
+	}
+
+	private void privnotice(User u, String msg) {
+		privnotice(u.getNick(),msg);
+	}
+
+	private void privnotice(String nick, String msg) {
+		irc.notice(nick,msg);
 	}
 
 	private void pubmsg(String msg) {
@@ -211,6 +216,8 @@ public class Cards implements Plugin {
 		} else if ( msg.startsWith("pick") ) {
 			//format: pick 1,2,3...
 			pick(nick, parsePicks(msg.substring(5)));
+		} else if ( msg.startsWith("help") ) {
+			help(nick);
 		}
 	}
 	
@@ -240,6 +247,14 @@ public class Cards implements Plugin {
 		return false;
 	}
 
+	private void help(String nick) {
+		privmsg(nick, "--- Cards Against Humantiy Bot v0.1 ---");
+		privmsg(nick, "!join - Joins the game (if one is running");
+		privmsg(nick, "!start - starts a new game. After at least " + game.MIN_PLAYERS + " join, sending !start again begins the game.");
+		privmsg(nick, "!show - Shows your hand and the current black card.");
+		privmsg(nick, "!pick - Pick card(s) or an option. Examples: !pick 0, !pick 0 1");
+	}
+
 	private MessageHandler cmdHandler = new MessageHandler() {
 		public void handle(MessageEvent e) {
 			Message m = e.getMessage();
@@ -247,9 +262,11 @@ public class Cards implements Plugin {
 			String srcNick = m.getSource().getNick();
 			String msg = m.getMessage().trim();
 
+			if ( msg.startsWith("!") ) msg = msg.substring(1);
+
 			if ( dst.scope(MessageTarget.Scope.CHANNEL) ) {
-				if ( dst.getChannel().equals(channel) && msg.startsWith("!") )
-					handleCmd(srcNick, msg.substring(1), false);
+				if ( dst.getChannel().equals(channel) )
+					handleCmd(srcNick, msg, false);
 			} else if ( userOnChannel(srcNick) ) {
 				handleCmd(srcNick, msg, true);
 			}
@@ -269,13 +286,9 @@ public class Cards implements Plugin {
 
 		public void join(Channel c, User u) {
 			//@todo game in progress?
-			privmsg(u, "Welcome to Cards Against Humanity on "+channel+".");
-			privmsg(u, "By remaining on this channel you foreit your right to be offended.");
-
-			if ( game.getState() == CardsGame.GameState.END )
-				privmsg(u, "Send !start to start a game then !join to join the game. Sending !start again after at least " + game.MIN_PLAYERS + " have joined begins the game");
-			else
-				privmsg(u, "Send !join to join the game!");
+			privnotice(u, "Welcome to Cards Against Humanity on "+channel+".");
+			privnotice(u, "By remaining on this channel you foreit your right to be offended.");
+			privnotice(u, "Send !help for help.");
 		}
 
 		public void nick(Channel c, User u, String oldnick) {
