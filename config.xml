@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <java version="1.6.0" class="java.beans.XMLDecoder">
 
+	<!-- nickserv identifier plugin -->
+	<object class="NickServ" id="ns">
+		<void property="password">
+			<string>l0lp4ss!</string>
+		</void>
+
+	</object>
+
+	<!-- cards game -->
+	<object class="Cards" id="cards">
+		<void property="channel">
+			<string>#cards</string>
+		</void>
+
+		<void method="createGame">
+			<string>blacks.txt</string>
+			<string>whites.txt</string>
+		</void>
+	</object>
+
 	<!-- setup the client object -->
 	<object class="Client" id="client">
 		<void property="host">
@@ -15,33 +35,15 @@
 			<string>Cards</string>
 		</void>
 
+		<void method="registerPlugin">
+			<object idref="ns" />
+		</void>
+
+		<void method="registerPlugin">
+			<object idref="cards" />
+		</void>
+		
 		<void method="connect" />
-	</object>
 
-	<!-- nickserv identifier plugin -->
-	<object class="NickServ" id="ns">
-		<void property="password">
-			<string>l0lp4ss!</string>
-		</void>
-
-		<void method="init">
-			<object idref="client" />
-		</void>
-	</object>
-
-	<!-- cards game -->
-	<object class="Cards" id="cards">
-		<void property="channel">
-			<string>#cards</string>
-		</void>
-
-		<void method="createGame">
-			<string>blacks.txt</string>
-			<string>whites.txt</string>
-		</void>
-
-		<void method="init">
-			<object idref="client" />
-		</void>
 	</object>
 </java>

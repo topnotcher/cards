@@ -31,12 +31,17 @@ public class Cards implements Plugin {
 
 	public void createGame(String blackFile, String whiteFile) throws java.io.IOException {
 		game = new CardsGame(new FileDeck(blackFile), new FileDeck(whiteFile));
-		pubmsg("Failed to create cards game?");
 	}
 
 	public void init(Client client) {
 		irc = client.getConnection();
 		sync = client.getSyncManager();
+
+		irc.addMessageHandler(cmdHandler).addType(MessageType.QUERY);
+		irc.addMessageHandler(initHandler).addCode( MessageCode.RPL_WELCOME );
+	}
+	
+	private void setup() {
 
 		irc.join(channel);
 
@@ -49,10 +54,7 @@ public class Cards implements Plugin {
 			throw new RuntimeException("Failed to sync...");
 
 		chan.addChannelListener( channelListener );
-
-		irc.addMessageHandler(cmdHandler).addType(MessageType.QUERY);
 	}
-
 	/**
 	 * Join nick to game if game is not full.
 	 */
@@ -251,6 +253,12 @@ public class Cards implements Plugin {
 			} else if ( userOnChannel(srcNick) ) {
 				handleCmd(srcNick, msg, true);
 			}
+		}
+	};
+
+	private MessageHandler initHandler = new MessageHandler() {
+		public void handle(MessageEvent e) {
+			setup();
 		}
 	};
 

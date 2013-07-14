@@ -1,6 +1,8 @@
 import com.coldsteelstudios.irc.*;
 import com.coldsteelstudios.irc.client.*;
 
+import java.util.Vector;
+
 public class Client {
 	private Connection irc;
 	private SyncManager sync;
@@ -8,6 +10,8 @@ public class Client {
 	private String host;
 	private String nick;
 	private int port;
+
+	private Vector<Plugin> plugins = new Vector<Plugin>();
 
 	public Client() {
 	}
@@ -19,9 +23,11 @@ public class Client {
 	}
 
 	public void connect() throws ConnectionException {
-		irc = new Connection(host, port, nick);
+		irc = new Connection(host, port, nick);	
 		sync = new SyncManager(irc);
-
+		
+		for (Plugin p : plugins)
+			p.init(this);
 	
 		irc.connect();
 	}
@@ -47,6 +53,6 @@ public class Client {
 	}
 
 	public void registerPlugin(Plugin p) {
-		p.init(this);
+		plugins.add(p);
 	}
 }
