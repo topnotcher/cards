@@ -195,19 +195,26 @@ public class Cards implements Plugin {
 		}
 	}
 
+	private static String[] cardsToStrArray(Iterable<Card> it) {
+		int n = 0;
+		for (Card item : it)
+			n++;
+
+		String array[] = (new String[n]);
+		n = 0;
+		for (Card card : it)
+			array[n++] = card.getText();
+
+		return array;
+	}
+
 	private void showResponses() {
 		String black = game.getBlackCard().getText();
 
 		int i = 0;
 		for ( CardsPlayer player : game.iterChoices() ) {
 			String answer = String.format("[%s] [%d] %s", game.getCzar().getName(),i++,black);
-				
-			String blanks[] = new String[player.getPicks().count()];
-			int n = 0;
-			for ( Card card : player.getPicks() )
-				blanks[n++] = card.getText();
-
-			answer = String.format(answer, (Object[])blanks);
+			answer = fillBlanks(answer, cardsToStrArray(player.getPicks()));
 
 			pubmsg(answer);
 		}
