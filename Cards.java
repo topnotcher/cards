@@ -159,19 +159,8 @@ public class Cards implements Plugin {
 			return;
 		}
 
-		if ( game.getRoundState() == CardsGame.RoundState.PICK_WAIT ) {
-
-			if ( game.getBlanks() != picks.length ) {
-				privmsg(nick, "You must pick " + game.getBlanks() + " cards.");
-				return;
-			} else {
-				//@TODO Y U NO CHECK USER IN GAME
-				//AH SUCK MA DICK
-				game.pickWhite(nick, picks);
-
-				if ( game.getRoundState() == CardsGame.RoundState.END ) 
-					showResponses();
-			}
+		if ( game.getRoundState() == CardsGame.RoundState.PICK_WAIT && game.getPlayer(nick) != null ) {
+			doPlayerPicks(nick, picks);
 		} else if ( game.getRoundState() == CardsGame.RoundState.END && nick.equals(game.getCzar().getName()) ) {
 			int pick = picks[0];
 			
@@ -190,6 +179,18 @@ public class Cards implements Plugin {
 			pubmsg(String.format("[%s] Round over! %s wins the round!", game.getCzar().getName(), winner.getName()));
 			
 			startRound();
+		}
+	}
+
+	private void doPlayerPicks(String nick, int picks[]) {
+		if ( game.getBlanks() != picks.length ) {
+			privnotice(nick, "You must pick " + game.getBlanks() + " cards (e.g. pick 1 2)");
+			return;
+		} else {
+			game.pickWhite(nick, picks);
+
+			if ( game.getRoundState() == CardsGame.RoundState.END ) 
+					showResponses();
 		}
 	}
 
