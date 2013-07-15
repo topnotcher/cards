@@ -1,0 +1,3 @@
+[submodule "nhbirc"]
+	path = nhbirc
+	url = git@github.com:topnotcher/nhbirc.git

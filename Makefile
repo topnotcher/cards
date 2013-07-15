@@ -1,5 +1,5 @@
 JC=javac
-CLASSPATH=.:/home/mario/dev/nhbirc/lib
+CLASSPATH=.:./nhbirc/lib
 JFLAGS=-g -Xlint:unchecked -classpath $(CLASSPATH) 
 SRC=.
 SOURCES=$(shell find $(SRC) -name '*.java')
