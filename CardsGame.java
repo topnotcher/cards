@@ -214,17 +214,19 @@ class CardsGame {
 			topPlayerHand(p);
 	}
 
-	public void leave(String nick) {
+	public boolean leave(String nick) {
 
 		CardsPlayer player = getPlayer(nick);
 		
-		if ( player == null ) return;
+		if ( player == null ) return false;
 
 		discard.merge(player.getWhite());
 		forfeit.merge(player.getBlack());
 
 		if ( players.size() < MIN_PLAYERS )
 			state = GameState.END;
+
+		return true;
 	}
 
 	public void nick(String oldnick, String newnick) {

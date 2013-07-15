@@ -117,11 +117,8 @@ public class Cards implements Plugin {
 	}
 
 	private void leaveGame(User u, String reason) {
-		if ( game.getPlayer(u.getNick() ) == null ) return;
-
-		pubmsg(u.getNick() + " has left the game (" + reason+")");
-		game.leave(u.getNick());
-		//@TODO
+		if ( game.leave(u.getNick()) )
+			pubmsg(u.getNick() + " has left the game (" + reason+")");
 	}
 
 	private void startRound() {
