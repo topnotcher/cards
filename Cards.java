@@ -56,6 +56,7 @@ public class Cards implements Plugin {
 	 * Join nick to game if game is not full.
 	 */
 	private void join(String nick) {
+
 		if ( game.getState() == CardsGame.GameState.END )
 			return;
 
@@ -116,7 +117,9 @@ public class Cards implements Plugin {
 	}
 
 	private void leaveGame(User u, String reason) {
-		pubmsg(u.getNick() + " has left the game " + reason);
+		if ( game.getPlayer(u.getNick() ) == null ) return;
+
+		pubmsg(u.getNick() + " has left the game (" + reason+")");
 		game.leave(u.getNick());
 		//@TODO
 	}

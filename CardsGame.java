@@ -216,19 +216,8 @@ class CardsGame {
 
 	public void leave(String nick) {
 
-		CardsPlayer player = null;
+		CardsPlayer player = getPlayer(nick);
 		
-		for ( int i = 0; i < players.size(); i++ ) {
-			player = players.get(i);
-			
-			if ( nick.equals(player.getName()) ) {
-				players.remove(i);
-				break;
-			} else { 
-				player = null;
-			}
-		}
-
 		if ( player == null ) return;
 
 		discard.merge(player.getWhite());
