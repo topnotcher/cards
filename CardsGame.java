@@ -94,15 +94,27 @@ class CardsGame {
 		return null;
 	}
 
-	public void pickWhite(String nick, int picks[]) {
+	public boolean isCzar(String nick) {
+		return isCzar(getPlayer(nick));
+	}
+
+	public boolean isCzar(CardsPlayer player) {
+		return player != null && player == getCzar();
+	}
+
+	public boolean pickWhite(String nick, int picks[]) {
 		CardsPlayer player = getPlayer(nick);
-		if ( player == null ) return;
+		if ( player == null ) return false;
 		
-		if ( player.getPicks().count() == 0 && !player.getName().equals(getCzar().getName())) {
+		boolean ret = false;
+	
+		if ( player.getPicks().count() == 0 && !isCzar(player) ) {
 
 			for ( Card c : player.getWhite().pick(picks) )
 				player.getPicks().addBottom(c);
-		}
+
+			ret = true;
+		} 
 
 		//now check to see if we should transition into the END state
 		int count = 0;
@@ -121,7 +133,7 @@ class CardsGame {
 			Collections.shuffle(choices);
 		}
 	
-
+		return ret;
 	}
 
 	public void startRound() {

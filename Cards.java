@@ -155,7 +155,7 @@ public class Cards implements Plugin {
 
 	private void pick(String nick, int picks[]) {
 		if ( game.getState() != CardsGame.GameState.PLAYING ) {
-			privmsg(nick, "No game in progress!");
+			privnotice(nick, "No game in progress!");
 			return;
 		}
 
@@ -183,12 +183,15 @@ public class Cards implements Plugin {
 	}
 
 	private void doPlayerPicks(String nick, int picks[]) {
-		if ( game.getBlanks() != picks.length ) {
+		if ( game.isCzar(nick) ) {
+			privnotice(nick, "The Card Czar cannot respond.");
+		} else if ( game.getBlanks() != picks.length ) {
 			privnotice(nick, "You must pick " + game.getBlanks() + " cards (e.g. pick 1 2)");
-			return;
 		} else {
-			game.pickWhite(nick, picks);
 
+			if ( game.pickWhite(nick, picks) ) 
+				privnotice(nick, "Picks recorded!");
+		
 			if ( game.getRoundState() == CardsGame.RoundState.END ) 
 					showResponses();
 		}
