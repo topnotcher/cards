@@ -196,7 +196,7 @@ public class Cards implements Plugin {
 			String blanks[] = new String[picks.count()];
 			int n = 0;
 			for ( Card card : picks )
-				blanks[n++] = "\002"+card.getText()+'\002';
+				blanks[n++] = bold(card.getText());
 
 			return fillBlanks(text,blanks);
 	}
@@ -260,13 +260,22 @@ public class Cards implements Plugin {
 		return false;
 	}
 
+	private static String bold(String txt) {
+		return '\002'+txt+'\002';
+	}
+
+	private static String cmdhelp(String cmd, String help) {
+		return bold("!"+cmd) + " - " + help;
+	}
+
 	private void help(String nick) {
 		privmsg(nick, "--- Cards Against Jaundies Bot v0.1 ---");
-		privmsg(nick, "!join - Joins the game (if one is running");
-		privmsg(nick, "!start - starts a new game. After at least " + game.MIN_PLAYERS + " join, sending !start again begins the game.");
-		privmsg(nick, "!show - Shows your hand and the current black card.");
-		privmsg(nick, "!pick - Pick card(s) or an option. Examples: !pick 0, !pick 0 1");
-		privmsg(nick, "Legal bullshit: The content of this game and parts of the content are based on Cards Against Humanity (http://cardsagainsthumanity.com");
+		privmsg(nick, cmdhelp("join", "Joins the game (if one is running"));
+		privmsg(nick, cmdhelp("start", "Starts a new game. After at least " + game.MIN_PLAYERS + " join, sending !start again begins the game."));
+		privmsg(nick, cmdhelp("show","Shows your hand and the current black card."));
+		privmsg(nick, cmdhelp("pick","Pick card(s) or an option. Examples: !pick 0, !pick 0 1"));
+		privmsg(nick, "----------------------------------------------------------------");
+		privmsg(nick, "Legal bullshit: The content of this game and parts of the content are based on Cards Against Humanity (http://cardsagainsthumanity.com)");
 
 	}
 
