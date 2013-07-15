@@ -261,11 +261,13 @@ public class Cards implements Plugin {
 	}
 
 	private void help(String nick) {
-		privmsg(nick, "--- Cards Against Humantiy Bot v0.1 ---");
+		privmsg(nick, "--- Cards Against Jaundies Bot v0.1 ---");
 		privmsg(nick, "!join - Joins the game (if one is running");
 		privmsg(nick, "!start - starts a new game. After at least " + game.MIN_PLAYERS + " join, sending !start again begins the game.");
 		privmsg(nick, "!show - Shows your hand and the current black card.");
 		privmsg(nick, "!pick - Pick card(s) or an option. Examples: !pick 0, !pick 0 1");
+		privmsg(nick, "Legal bullshit: The content of this game and parts of the content are based on Cards Against Humanity (http://cardsagainsthumanity.com");
+
 	}
 
 	private MessageHandler cmdHandler = new MessageHandler() {
@@ -299,9 +301,9 @@ public class Cards implements Plugin {
 
 		public void join(Channel c, User u) {
 			//@todo game in progress?
-			privnotice(u, "Welcome to Cards Against Humanity on "+channel+".");
-			privnotice(u, "By remaining on this channel you foreit your right to be offended.");
-			privnotice(u, "Send !help for help.");
+			privnotice(u, "["+channel+"] Welcome to Cards Against Jaundies on "+channel+".");
+			privnotice(u, "["+ channel+"] By remaining on this channel you foreit your right to be offended.");
+			privnotice(u, "[" +channel+"] Send !help for help.");
 		}
 
 		public void nick(Channel c, User u, String oldnick) {
