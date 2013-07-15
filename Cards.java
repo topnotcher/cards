@@ -52,6 +52,7 @@ public class Cards implements Plugin {
 
 		chan.addChannelListener( channelListener );
 	}
+
 	/**
 	 * Join nick to game if game is not full.
 	 */
@@ -168,11 +169,8 @@ public class Cards implements Plugin {
 				//AH SUCK MA DICK
 				game.pickWhite(nick, picks);
 
-				if ( game.getRoundState() == CardsGame.RoundState.END ) {
-					pubmsg("---------- Responses: ---------- ");
+				if ( game.getRoundState() == CardsGame.RoundState.END ) 
 					showResponses();
-					privmsg(game.getCzar().getName(), "Choose your favorite response by sending !pick N");
-				}
 			}
 		} else if ( game.getRoundState() == CardsGame.RoundState.END && nick.equals(game.getCzar().getName()) ) {
 			int pick = picks[0];
@@ -209,6 +207,8 @@ public class Cards implements Plugin {
 	}
 
 	private void showResponses() {
+		pubmsg("---------- Responses: ---------- ");
+
 		String black = game.getBlackCard().getText();
 
 		int i = 0;
@@ -218,6 +218,9 @@ public class Cards implements Plugin {
 
 			pubmsg(answer);
 		}
+
+		privnotice(game.getCzar().getName(), "Choose your favorite response by sending !pick N");
+
 	}
 
 	private void handleCmd(String nick, String msg, boolean priv ) {
