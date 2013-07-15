@@ -41,6 +41,10 @@ public class Cards implements Plugin {
 	
 	private void setup() {
 		irc.join(channel);
+		
+		//set bot mode (unrealircd only?)
+		//@TODO umode in irc lib and set this via the client.
+		irc.send("MODE",irc.nick(), "+B");
 
 		Channel chan;
 		int tries = 0;
