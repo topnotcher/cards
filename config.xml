@@ -6,8 +6,10 @@
 		<void property="password">
 			<string>l0lp4ss!</string>
 		</void>
-
 	</object>
+
+	<!-- plugin that will try to keep the default nick at all times -->
+	<object class="NickKeeper" id="nk" />
 
 	<!-- cards game -->
 	<object class="Cards" id="cards">
@@ -37,6 +39,10 @@
 
 		<void method="registerPlugin">
 			<object idref="ns" />
+		</void>
+
+		<void method="registerPlugin">
+			<object idref="nk" />
 		</void>
 
 		<void method="registerPlugin">
