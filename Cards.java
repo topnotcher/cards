@@ -134,14 +134,21 @@ public class Cards implements Plugin {
 		pubmsg("Type !show to show your hand.");
 	}
 
+	private static String fillBlanks(String text, String ... blanks) {
+		return String.format(text, (Object[])blanks);
+	}
+
+	private static String[] arrayFill(String fill, int n) {
+		String ret[] = new String[n];
+		for ( int i = 0; i < n; ++i )
+			ret[i] = fill;
+
+		return ret;
+
+	}
 	private String formatQuestion() {
 		Card black = game.getBlackCard();
-
-		String blanks[] = new String[game.getBlanks()];
-		for ( int i = 0; i < blanks.length; ++i )
-			blanks[i] = BLANK;
-
-		String msg = String.format(black.getText(), (Object[])blanks);
+		String msg = fillBlanks(black.getText(), arrayFill(BLANK, game.getBlanks()));
 		return String.format( "[%s] %s", game.getCzar().getName(), msg) ;
 	}
 
