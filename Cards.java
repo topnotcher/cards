@@ -168,12 +168,7 @@ public class Cards implements Plugin {
 
 			CardsPlayer winner = game.chooseWinner(pick);
 			
-			String blanks[] = new String[winner.getPicks().count()];
-			int n = 0;
-			for ( Card card : winner.getPicks() )
-				blanks[n++] = card.getText();
-
-			answer = String.format(answer, (Object[])blanks);
+			answer = subPicks(answer, winner.getPicks());
 
 			pubmsg(">>> " + answer);
 			pubmsg(String.format("[%s] Round over! %s wins the round!", game.getCzar().getName(), winner.getName()));
@@ -197,18 +192,16 @@ public class Cards implements Plugin {
 		}
 	}
 
-	private static String[] cardsToStrArray(Iterable<Card> it) {
-		int n = 0;
-		for (Card item : it)
-			n++;
+	public String subPicks(String text, Deck picks) {
+			String blanks[] = new String[picks.count()];
+			int n = 0;
+			for ( Card card : picks )
+				blanks[n++] = "\002"+card.getText()+'\002';
 
-		String array[] = (new String[n]);
-		n = 0;
-		for (Card card : it)
-			array[n++] = card.getText();
-
-		return array;
+			return fillBlanks(text,blanks);
 	}
+
+
 
 	private void showResponses() {
 		pubmsg("---------- Responses: ---------- ");
@@ -218,8 +211,8 @@ public class Cards implements Plugin {
 		int i = 0;
 		for ( CardsPlayer player : game.iterChoices() ) {
 			String answer = String.format("[%s] [%d] %s", game.getCzar().getName(),i++,black);
-			answer = fillBlanks(answer, cardsToStrArray(player.getPicks()));
 
+			answer = subPicks(answer, player.getPicks());
 			pubmsg(answer);
 		}
 
