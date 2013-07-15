@@ -198,7 +198,12 @@ class CardsGame {
 	}
 
 	private void topPlayerHand(CardsPlayer player) {
-		/** @TODO out of cards? */
+		
+		if ( whites.count() < HAND_SIZE ) {
+			discard.shuffle();
+			whites.merge( discard );
+		}
+
 		while (player.getWhite().count() < HAND_SIZE)
 			player.getWhite().add( whites.pick() );
 	}
