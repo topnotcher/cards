@@ -43,7 +43,7 @@ public class NickServ implements Plugin {
 	}
 
 	private void registerIdentifier() {
-		Connection.IrcMessageSubscription sub = irc.addMessageHandler(identifier);
+		MessageSubscription sub = irc.addMessageHandler(identifier);
 		sub.addType( MessageType.NOTICE );
 
 		for ( String ptn : prompts )
@@ -52,7 +52,7 @@ public class NickServ implements Plugin {
 	}
 
 	private void registerReclaimer() {
-		Connection.IrcMessageSubscription sub = irc.addMessageHandler(reclaimer);
+		MessageSubscription sub = irc.addMessageHandler(reclaimer);
 		sub.addType( MessageType.NOTICE );
 
 		for ( String ptn : ghosted )

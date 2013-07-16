@@ -4,7 +4,9 @@ public class NickKeeper implements Plugin {
 	public NickKeeper(){}
 
 	public void init(Client c) {
-		c.getConnection().addMessageHandler(keeper).addCode(MessageCode.RPL_WELCOME).or().addType(MessageType.NICKCHANGE);
+		Connection irc = c.getConnection();
+		irc.addMessageHandler(keeper).addCode(MessageCode.RPL_WELCOME);
+		irc.addMessageHandler(keeper).addType(MessageType.NICKCHANGE);
 	}
 
 	private MessageHandler keeper = new MessageHandler() {
