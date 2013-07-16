@@ -6,7 +6,7 @@ Maybe she's born with it. Maybe it's %s.
 %s is next Happy Meal toy?
 Here is the church. Here is the steeple. Open the doors and there is %s.
 It's a pity that kids these days are all getting involved with %s.
-During his childhood, Salvador Dali Produced hundreds of %s.
+During his childhood, Salvador Dali Produced hundreds of paintings of %s.
 Alternative medicine is now embracing the curative powers of %s.
 And the Academy Award for %s goes to %s.
 What's that sound? %s
@@ -21,6 +21,57 @@ TSA guidelines now prohibit %s on airplanes.
 %s... That's how I want to die!
 For my next trick, I will pull %s out of %s.
 In the new Disney Channel Original Movie, Hannah Montana struggles with %s for the first time.
+%s is a slippery slope that leads to %s.
+Dick Cheny prefers %s.
+Dear Abby; I'm having some trouble with %s and would like your advice.
+Instead of coal, Santa now gives bad children %s.
+What's the most emo? %s
+In 1,000 years, when paper money is a distant memory, how will we pay for goods and services? %s
+%s and %s is the new superhero/sidekick duo.
+A romantic candlelit dinner would be incomplete without %s.
+%s. Betcha can't have just one!
+White people like %s.
+%s. High five, bro!
+Next from J.K. Rowling: Harry potter and the chamber of %s.
+BILLY MAYS HERE FOR %s.
+War! What is it good for? %s.
+In L.A. County Jail, word is you can trade 200 cigarettes for %s.
+What did I bring back from Mexico? %s.
+What don't you want to find in your Kung Pao chicken? %s.
+What ill I bring back in time to convince people that I am a powerful wizard? %s.
+How am I maintaining my relationship status? %s.
+%s. It's a trap!
+Coming to Broad way this season, %s: The Musical.
+While the United States raced the Sovient Union to the moon, the Mexican government funneled millions of pesos into research on %s.
+After the earthquake, Sean Penn brought %s to the poeple of Haiti.
+Next on ESPN2, the World Series of %s.
+Before I kill you, Mr. Bond, I must show you %s.
+%s gives me uncontrollable gas.
+Old poeple smell like %s.
+The class field trip was completely ruined by %s.
+When Pharoh remained unmoved, Moses called down a Plague of %s.
+What's my secret power? %s.
+What's there a ton of in heaven? %s.
+What did Vin Diesel eat for dinner? %s.
+%s: good to the last drop.
+Why am I sticky? %s.
+%s helps Obama unwind.
+%s gets better with age.
+%s: kid-tested, mother-approved.
+Daddy, why is mommy crying? %s.
+Teach for America is using %s to inspire inner city students to succeed.
+Studies show that lab rats navigate mazes fifty percent after being exposed to %s.
+Life for American Indians was forever changed when the White Man introduced them to %s.
+I do not know with what weapons World War III will be fought, but World War IV will be fought with %s.
+Why do I hurt all over? %s.
+What am I giving up for Lent? %s.
+In Michael Jackson's final moments, he thought about %s.
+The Smithsonian Museum of Natural History has just opened an interactive exhibit on %s.
+When I am President of the United states, I will create the Department of %s.
+%s is my anti-drug.
+%s never fails to liven up the party.
+What's the new fad diet? %s.
+Major League Baseball has banned %s for giving players an unfair advantage.
 That's right, I killed %s. How, you ask? %s.
 %s + %s = %s
 Lifetime presents %s, the story of %s.
@@ -30,4 +81,5 @@ I never truly understood %s until I encountered %s.
 Step 1: %s; Step 2: %s; Step 3: Profit.
 Rumor has it that Vladimir Putin's favorite delicacy is %s stuffed with %s.
 In a world ravaged by %s, our only solace is %s.
-In M. NIght Shyamalan's new movie, Bruce Willis discovers that %s had really been %s all along.
+In M. Night Shyamalan's new movie, Bruce Willis discovers that %s had really been %s all along.
+
