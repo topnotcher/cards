@@ -90,6 +90,10 @@ public class Cards implements Plugin {
 			privmsg(nick, "["+ (i++) +"] " + card.getText());
 	}
 
+	private void stop() {
+		game.reset();
+	}
+
 	private void start() {
 		if ( game.getState() == CardsGame.GameState.START && game.numPlayers() >= game.MIN_PLAYERS ) {
 			game.start();
@@ -240,6 +244,8 @@ public class Cards implements Plugin {
 			}
 		} else if ( msg.startsWith("help") ) {
 			help(nick);
+		} else if ( msg.startsWith("stop") ) {
+			stop();
 		}
 	}
 	
@@ -290,11 +296,9 @@ public class Cards implements Plugin {
 			String srcNick = m.getSource().getNick();
 			String msg = m.getMessage().trim();
 
-			if ( msg.startsWith("!") ) msg = msg.substring(1);
-
 			if ( dst.scope(MessageTarget.Scope.CHANNEL) ) {
-				if ( dst.getChannel().equals(channel) )
-					handleCmd(srcNick, msg, false);
+				if ( dst.getChannel().equals(channel) && msg.startsWith("!") )
+					handleCmd(srcNick, msg.substring(1), false);
 			} else if ( userOnChannel(srcNick) ) {
 				handleCmd(srcNick, msg, true);
 			}
