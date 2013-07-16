@@ -300,7 +300,7 @@ public class Cards implements Plugin {
 				if ( dst.getChannel().equals(channel) && msg.startsWith("!") )
 					handleCmd(srcNick, msg.substring(1), false);
 			} else if ( userOnChannel(srcNick) ) {
-				handleCmd(srcNick, msg, true);
+				handleCmd(srcNick, msg.startsWith("!") ? msg.substring(1) : msg, true);
 			}
 		}
 	};
