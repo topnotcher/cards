@@ -133,14 +133,11 @@ public class Cards implements Plugin {
 	private void startRound() {
 		game.startRound();
 	
-		pubmsg("---------------------------------------");
-		pubmsg("A new round has begun. It is "+game.getCzar().getName() +"'s turn as the Card Czar!");
+		pubmsg(String.format(">>> %s ------------ [%s] -------------", bold("New round!"), game.getCzar().getName()));
 
 		pubmsg(formatQuestion());
 
 		pubmsg( String.format( "[%s] Pick %d cards!", game.getCzar().getName(), game.getBlanks()) );
-		pubmsg("Send your responses with !pick, i.e. !pick 0 1 to pick cards 0 and 1.");
-		pubmsg("Type !show to show your hand.");
 	}
 
 	private static String fillBlanks(String text, String ... blanks) {
